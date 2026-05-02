@@ -73,6 +73,11 @@ DOCS[CONF_INTERVAL] = "Frequency to adapt the lights, in seconds. 🔄"
 CONF_MAX_BRIGHTNESS, DEFAULT_MAX_BRIGHTNESS = "max_brightness", 100
 DOCS[CONF_MAX_BRIGHTNESS] = "Maximum brightness percentage. 💡"
 
+CONF_INVERSE_BRIGHTNESS, DEFAULT_INVERSE_BRIGHTNESS = "inverse_brightness", False
+DOCS[CONF_INVERSE_BRIGHTNESS] = (
+    "Invert the brightness curve between `min_brightness` and `max_brightness`. 💡"
+)
+
 CONF_MAX_COLOR_TEMP, DEFAULT_MAX_COLOR_TEMP = "max_color_temp", 5500
 DOCS[CONF_MAX_COLOR_TEMP] = "Coldest color temperature in Kelvin. ❄️"
 
@@ -327,6 +332,7 @@ VALIDATION_TUPLES: list[tuple[str, Any, Any]] = [
     (CONF_INITIAL_TRANSITION, DEFAULT_INITIAL_TRANSITION, VALID_TRANSITION),
     (CONF_MIN_BRIGHTNESS, DEFAULT_MIN_BRIGHTNESS, int_between(1, 100)),
     (CONF_MAX_BRIGHTNESS, DEFAULT_MAX_BRIGHTNESS, int_between(1, 100)),
+    (CONF_INVERSE_BRIGHTNESS, DEFAULT_INVERSE_BRIGHTNESS, bool),
     (CONF_MIN_COLOR_TEMP, DEFAULT_MIN_COLOR_TEMP, int_between(1000, 10000)),
     (CONF_MAX_COLOR_TEMP, DEFAULT_MAX_COLOR_TEMP, int_between(1000, 10000)),
     (CONF_PREFER_RGB_COLOR, DEFAULT_PREFER_RGB_COLOR, bool),

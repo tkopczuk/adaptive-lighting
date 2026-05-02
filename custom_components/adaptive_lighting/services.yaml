@@ -111,6 +111,12 @@ change_switch_settings:
       example: 100
       selector:
         text: null
+    inverse_brightness:
+      description: Invert the brightness curve between `min_brightness` and `max_brightness`. 💡
+      required: false
+      example: false
+      selector:
+        boolean: null
     max_color_temp:
       description: Coldest color temperature in Kelvin. ❄️
       required: false

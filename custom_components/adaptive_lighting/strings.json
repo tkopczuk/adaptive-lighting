@@ -32,6 +32,7 @@
           "initial_transition": "initial_transition",
           "min_brightness": "min_brightness: Minimum brightness percentage. 💡",
           "max_brightness": "max_brightness: Maximum brightness percentage. 💡",
+          "inverse_brightness": "inverse_brightness: Invert the brightness curve between `min_brightness` and `max_brightness`. 💡",
           "min_color_temp": "min_color_temp: Warmest color temperature in Kelvin. 🔥",
           "max_color_temp": "max_color_temp: Coldest color temperature in Kelvin. ❄️",
           "prefer_rgb_color": "prefer_rgb_color: Whether to prefer RGB color adjustment over light color temperature when possible. 🌈",
@@ -182,6 +183,10 @@
         "max_brightness": {
           "description": "Maximum brightness percentage. 💡",
           "name": "max_brightness"
+        },
+        "inverse_brightness": {
+          "description": "Invert the brightness curve between `min_brightness` and `max_brightness`. 💡",
+          "name": "inverse_brightness"
         },
         "max_color_temp": {
           "description": "Coldest color temperature in Kelvin. ❄️",

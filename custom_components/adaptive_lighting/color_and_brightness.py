@@ -226,6 +226,7 @@ class SunLightSettings:
     max_sunset_time: datetime.time | None
     brightness_mode_time_dark: datetime.timedelta
     brightness_mode_time_light: datetime.timedelta
+    inverse_brightness: bool = False
     brightness_mode: Literal["default", "linear", "tanh"] = "default"
     sunrise_offset: datetime.timedelta = datetime.timedelta()
     sunset_offset: datetime.timedelta = datetime.timedelta()
@@ -318,12 +319,16 @@ class SunLightSettings:
             return self.sleep_brightness
         assert self.brightness_mode in ("default", "linear", "tanh")
         if self.brightness_mode == "default":
-            return self._brightness_pct_default(dt)
-        if self.brightness_mode == "linear":
-            return self._brightness_pct_linear(dt)
-        if self.brightness_mode == "tanh":
-            return self._brightness_pct_tanh(dt)
-        return None
+            brightness = self._brightness_pct_default(dt)
+        elif self.brightness_mode == "linear":
+            brightness = self._brightness_pct_linear(dt)
+        elif self.brightness_mode == "tanh":
+            brightness = self._brightness_pct_tanh(dt)
+        else:
+            return None
+        if self.inverse_brightness:
+            return self.min_brightness + self.max_brightness - brightness
+        return brightness
 
     def color_temp_kelvin(self, sun_position: float) -> int:
         """Calculate the color temperature in Kelvin."""

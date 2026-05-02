@@ -36,6 +36,7 @@ from homeassistant.components.adaptive_lighting.const import (
     CONF_BRIGHTNESS_MODE_TIME_LIGHT,
     CONF_DETECT_NON_HA_CHANGES,
     CONF_INITIAL_TRANSITION,
+    CONF_INVERSE_BRIGHTNESS,
     CONF_MANUAL_CONTROL,
     CONF_MAX_BRIGHTNESS,
     CONF_MIN_COLOR_TEMP,
@@ -1673,6 +1674,11 @@ async def test_change_switch_settings_service(hass):
     assert switch._sun_light_settings.max_brightness == 100
     await change_switch_settings(**{CONF_MAX_BRIGHTNESS: 50})
     assert switch._sun_light_settings.max_brightness == 50
+
+    # Test changing inverse brightness
+    assert switch._sun_light_settings.inverse_brightness is False
+    await change_switch_settings(**{CONF_INVERSE_BRIGHTNESS: True})
+    assert switch._sun_light_settings.inverse_brightness is True
 
     # Test changing to illegal max brightness
     with pytest.raises(
